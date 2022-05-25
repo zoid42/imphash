@@ -1,4 +1,4 @@
-module github.com/malwaredb/imphash
+module github.com/zoid42/imphash
 
 go 1.14
 
