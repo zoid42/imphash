@@ -9,7 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/glaslos/ssdeep"
-	"sort"
+	//"sort"
 	"strings"
 )
 
@@ -78,10 +78,10 @@ func impHashFromPEBytes(fileContents []byte) (*ImpHashResult, error) {
 		dllNames = append(dllNames, dllName)
 	}
 
-	sort.Strings(dllNames) // Gives a new ImpHash than Python's pefile, but now we don't care about reordering to evade ImpHash
+	//sort.Strings(dllNames) // Gives a new ImpHash than Python's pefile, but now we don't care about reordering to evade ImpHash
 	impString := ""
 	for idx1, dllName := range dllNames {
-		sort.Strings(dllFunc[dllName])
+		//sort.Strings(dllFunc[dllName])
 		for idx2, funcName := range dllFunc[dllName] {
 			if idx1+idx2 > 0 {
 				impString += ","
@@ -132,11 +132,11 @@ func impHashFromELFBytes(fileContents []byte) (*ImpHashResult, error) {
 	for lib := range libFunc {
 		libNames = append(libNames, lib)
 	}
-	sort.Strings(libNames)
+	//sort.Strings(libNames)
 
 	impString := ""
 	for idx1, dllName := range libNames {
-		sort.Strings(libFunc[dllName])
+		//sort.Strings(libFunc[dllName])
 		for idx2, funcName := range libFunc[dllName] {
 			if idx1+idx2 > 0 {
 				impString += ","
@@ -194,7 +194,7 @@ func impHashFromMachO(fileContents []byte) (*ImpHashResult, error) {
 	for lib := range libFunc {
 		libNames = append(libNames, lib)
 	}
-	sort.Strings(libNames)
+	//sort.Strings(libNames)
 
 	impString := ""
 	for idx, dllName := range libNames {
@@ -255,7 +255,7 @@ func impHashFromFatMachO(fileContents []byte) (*ImpHashResult, error) {
 		libNames = append(libNames, lib)
 	}
 
-	sort.Strings(libNames)
+	//sort.Strings(libNames)
 	impString := ""
 	for idx, dllName := range libNames {
 		if idx > 0 {
